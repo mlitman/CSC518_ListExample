@@ -17,4 +17,9 @@ public class Student
     {
         System.out.println(this.fname + " " + this.lname + " (" + this.age + ")");
     }
+
+    public String toString()
+    {
+        return this.fname + " " + this.lname + " (" + this.age + ")";
+    }
 }

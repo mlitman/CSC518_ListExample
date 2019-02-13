@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Page2Activity"></activity>
+        <activity android:name=".Page2Activity" />
+        <activity android:name=".AddCreditCardActivity"></activity>
     </application>
 
 </manifest>
