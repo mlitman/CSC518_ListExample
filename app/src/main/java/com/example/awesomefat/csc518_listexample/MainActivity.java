@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.listAdapter = new ArrayAdapter<String>(this,
-                R.layout.student_listview_row, Core.theStudentStrings);
+                R.layout.another_row, Core.theStudentStrings);
         this.studentListView.setAdapter(this.listAdapter);
 
     }
