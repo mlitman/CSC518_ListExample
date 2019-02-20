@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    private ListView studentListView;
-    private ArrayAdapter<String> listAdapter;
+    private ListView creditCardLV, loyaltyProgramLV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,30 +23,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.studentListView = (ListView)this.findViewById(R.id.studentListView);
-        for(int i = 0; i < Core.theStudentStrings.length; i++)
+        for(int i = 0; i < 1000; i++)
         {
-            Core.theStudentStrings[i] = "UnKnown Student";
+            Core.theLoyaltyProgramStrings[i] = "N/A";
+            Core.theCreditCardStrings[i] = "N/A";
         }
 
-        for(int i = 0; i < 100; i++)
-        {
-            Student s = new Student("Fname" + i, "Lname" + i, i);
-            Core.theStudents[Core.numStudents] = s;
-            Core.theStudentStrings[Core.numStudents] = s.toString();
-            Core.numStudents++;
-        }
+        this.creditCardLV = (ListView)this.findViewById(R.id.creditCardListView);
+        this.loyaltyProgramLV = (ListView)this.findViewById(R.id.loyaltyProgramListView);
+        Core.ccAdapter = new ArrayAdapter(this, R.layout.student_listview_row, Core.theCreditCardStrings);
+        Core.lpAdapter = new ArrayAdapter(this, R.layout.student_listview_row, Core.theLoyaltyProgramStrings);
 
-        String[] bibleBooks = {"Matthew", "Mark", "Luke", "John", "Acts"};
-        String[] arOfStuff = new String[1000];
-        for(int i = 0 ; i < 1000; i++)
-        {
-            arOfStuff[i] = "dfssadfas" + i;
-        }
-
-        this.listAdapter = new ArrayAdapter<String>(this,
-                R.layout.another_row, Core.theStudentStrings);
-        this.studentListView.setAdapter(this.listAdapter);
+        this.creditCardLV.setAdapter(Core.ccAdapter);
+        this.loyaltyProgramLV.setAdapter(Core.lpAdapter);
 
     }
 
@@ -54,15 +45,10 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(i);
     }
 
-    public void onButtonPressed(View v)
+    public void onAddLoyaltyProgramButtonPressed(View v)
     {
-        TextView answerTV = (TextView)this.findViewById(R.id.answerTV);
-        answerTV.setText("World");
-    }
-
-    public void onNextPageButtonPressed(View v)
-    {
-        Intent i = new Intent(this, Page2Activity.class);
+        Intent i = new Intent(this, AddLoyaltyProgramActivity.class);
         this.startActivity(i);
     }
+
 }

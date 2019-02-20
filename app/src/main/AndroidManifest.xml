@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Page2Activity" />
-        <activity android:name=".AddCreditCardActivity"></activity>
+        <activity android:name=".AddCreditCardActivity" />
+        <activity android:name=".AddLoyaltyProgramActivity"></activity>
     </application>
 
 </manifest>

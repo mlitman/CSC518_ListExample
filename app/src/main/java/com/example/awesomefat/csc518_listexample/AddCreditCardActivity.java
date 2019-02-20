@@ -33,6 +33,7 @@ public class AddCreditCardActivity extends AppCompatActivity
         CreditCard cc = new CreditCard(creditCardName, creditCardStartDate,
                 creditCardMinSpend,creditCardBonusPoints);
         cc.display();
-        Core.currCreditCard = cc;
+        Core.addCreditCard(cc);
+        this.finish();
     }
 }

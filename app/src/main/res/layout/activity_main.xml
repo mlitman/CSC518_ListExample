@@ -14,39 +14,31 @@
         tools:layout_editor_absoluteY="8dp">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onButtonPressed"
-            android:text="Press Me" />
-
-        <TextView
-            android:id="@+id/answerTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Hello"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onNextPageButtonPressed"
-            android:text="Go To Next Page" />
-
-        <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onAddCreditCardButtonPressed"
             android:text="Add Credit Card" />
 
-        <ListView
-            android:id="@+id/studentListView"
+        <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:onClick="onAddLoyaltyProgramButtonPressed"
+            android:text="Add Loyalty Program" />
 
+        <ListView
+            android:id="@+id/creditCardListView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        </ListView>
+
+        <ListView
+            android:id="@+id/loyaltyProgramListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -19,6 +19,11 @@ public class LoyaltyProgram
         this.point_balance = point_balance;
     }
 
+    public String toString()
+    {
+        return this.name + " - " + this.bank + " - " + this.point_balance;
+    }
+
     public void display()
     {
         System.out.println(this.name + " - " + this.bank + " - " + this.point_balance);

@@ -15,6 +15,13 @@ public class CreditCard
         this.point_bonus = point_bonus;
     }
 
+    public String toString()
+    {
+        return "Name: " + this.name +
+                " (" + this.start_date + ") - Min Spend: "
+                + this.min_spend + " - Bonus: " + this.point_bonus;
+    }
+
     public void display()
     {
         System.out.println("Name: " + this.name +
