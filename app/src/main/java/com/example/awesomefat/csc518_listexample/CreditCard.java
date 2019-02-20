@@ -15,6 +15,31 @@ public class CreditCard
         this.point_bonus = point_bonus;
     }
 
+    public CreditCard()
+    {
+        this.name = "Name";
+        this.start_date = "Start Date";
+        this.min_spend = -1;
+        this.point_bonus = -1;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public int getMin_spend() {
+        return min_spend;
+    }
+
+    public int getPoint_bonus() {
+        return point_bonus;
+    }
+
     public String toString()
     {
         return "Name: " + this.name +

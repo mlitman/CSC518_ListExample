@@ -12,6 +12,7 @@ public class Core
     public static int creditCardCount = 0;
     public static int loyaltyProgramCount = 0;
     public static ArrayAdapter<String> ccAdapter, lpAdapter;
+    public static CreditCardArrayAdapter ccCustomAdapter;
 
     //encapsulated
     public static void addLoyaltyProgram(LoyaltyProgram lp)
@@ -28,6 +29,6 @@ public class Core
         Core.theCreditCards[Core.creditCardCount] = cc;
         Core.theCreditCardStrings[Core.creditCardCount] = cc.toString();
         Core.creditCardCount++;
-        Core.ccAdapter.notifyDataSetChanged();
+        Core.ccCustomAdapter.notifyDataSetChanged();
     }
 }
