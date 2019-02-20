@@ -23,6 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LinkedList ll = new LinkedList();
+        for(int i = 0; i < 10; i++)
+        {
+            ll.addEnd(i);
+        }
+
+        for(int i = 0; i < ll.length(); i++)
+        {
+            System.out.println("LL: " + ll.getAtIndex(i));
+        }
+
         for(int i = 0; i < 1000; i++)
         {
             Core.theLoyaltyProgramStrings[i] = "N/A";
