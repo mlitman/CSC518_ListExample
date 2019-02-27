@@ -29,7 +29,6 @@ public class AddLoyaltyProgramActivity extends AppCompatActivity
         int currPoints = Integer.parseInt(this.loyaltyPointsET.getText().toString());
 
         LoyaltyProgram lp = new LoyaltyProgram(programName, bankName, currPoints);
-        lp.display();
         Core.addLoyaltyProgram(lp);
         this.finish();
     }

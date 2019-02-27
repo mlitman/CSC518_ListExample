@@ -28,4 +28,16 @@ public class LoyaltyProgram
     {
         System.out.println(this.name + " - " + this.bank + " - " + this.point_balance);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public int getPoint_balance() {
+        return point_balance;
+    }
 }

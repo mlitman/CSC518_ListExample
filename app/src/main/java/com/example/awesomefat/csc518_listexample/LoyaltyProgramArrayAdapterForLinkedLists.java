@@ -9,23 +9,23 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class CreditCardArrayAdapterForLinkedLists extends ArrayAdapter
+public class LoyaltyProgramArrayAdapterForLinkedLists extends ArrayAdapter
 {
-    private LinkedListOfCreditCards creditCardList;
+    private LinkedListOfLoyaltyPrograms loyaltyProgramLinkedList;
     private int textViewResourceId;
 
-    public CreditCardArrayAdapterForLinkedLists(Context context, int textViewResourceId,
-                                                LinkedListOfCreditCards list)
+    public LoyaltyProgramArrayAdapterForLinkedLists(Context context, int textViewResourceId,
+                                                LinkedListOfLoyaltyPrograms list)
     {
         super(context, textViewResourceId);
-        this.creditCardList = list;
+        this.loyaltyProgramLinkedList = list;
         this.textViewResourceId = textViewResourceId;
     }
 
     @Override
     public int getCount()
     {
-        return this.creditCardList.length();
+        return this.loyaltyProgramLinkedList.length();
     }
 
     @NonNull
@@ -39,16 +39,14 @@ public class CreditCardArrayAdapterForLinkedLists extends ArrayAdapter
                     inflate(this.textViewResourceId,parent,false);
         }
 
-        TextView ccName = (TextView)listItem.findViewById(R.id.ccNameTV);
-        TextView ccStartDate = (TextView)listItem.findViewById(R.id.ccStartDateTV);
-        TextView ccMinSpend = (TextView)listItem.findViewById(R.id.ccMinSpendTV);
-        TextView ccBonusPoints = (TextView)listItem.findViewById(R.id.ccBonusPointsTV);
-        CreditCard cc = this.creditCardList.getAtIndex(position);
+        TextView lpName = (TextView)listItem.findViewById(R.id.lpProgramNameTV);
+        TextView lpBank = (TextView)listItem.findViewById(R.id.lpBankNameTV);
+        TextView lpPoints = (TextView)listItem.findViewById(R.id.lpPointsTV);
+        LoyaltyProgram lp = this.loyaltyProgramLinkedList.getAtIndex(position);
 
-        ccName.setText(cc.getName());
-        ccStartDate.setText(cc.getStart_date());
-        ccMinSpend.setText("" + cc.getMin_spend());
-        ccBonusPoints.setText("" + cc.getPoint_bonus());
+        lpName.setText(lp.getName());
+        lpBank.setText(lp.getBank());
+        lpPoints.setText("" + lp.getPoint_balance());
         //return the View after we have set all of the values
         return listItem;
     }
