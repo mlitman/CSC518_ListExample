@@ -1,11 +1,13 @@
 package com.example.awesomefat.csc518_listexample;
 
-public class CreditCard
+import java.io.Serializable;
+
+public class CreditCard implements Serializable
 {
-    private String name;
-    private String start_date;
-    private int min_spend;
-    private int point_bonus;
+    public String name;
+    public String start_date;
+    public int min_spend;
+    public int point_bonus;
 
     public CreditCard(String name, String start_date, int min_spend, int point_bonus)
     {
@@ -15,12 +17,9 @@ public class CreditCard
         this.point_bonus = point_bonus;
     }
 
+    //no argument constructor required for de-serialization
     public CreditCard()
     {
-        this.name = "Name";
-        this.start_date = "Start Date";
-        this.min_spend = -1;
-        this.point_bonus = -1;
     }
 
     public String getName()
@@ -49,7 +48,7 @@ public class CreditCard
 
     public void display()
     {
-        System.out.println("Name: " + this.name +
+        System.out.println("*****Name: " + this.name +
                 " (" + this.start_date + ") - Min Spend: "
         + this.min_spend + " - Bonus: " + this.point_bonus);
     }

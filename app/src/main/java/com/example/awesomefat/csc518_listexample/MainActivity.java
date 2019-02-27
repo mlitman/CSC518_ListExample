@@ -31,21 +31,35 @@ public class MainActivity extends AppCompatActivity {
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        DatabaseReference myRef2 = database.getReference("products");
+        DatabaseReference creditCardRef = database.getReference("creditCards");
+        DatabaseReference myRef = database.getReference("blah");
+
+        //create card and store in firebase (maybe move this to CORE hint hint)
+        CreditCard cc = new CreditCard("Chase Sapphire", "1/1/19", 3000, 50000);
+        //creditCardRef.push().setValue(cc);
+
         //myRef.setValue("Hello, World!");
         //myRef2.setValue("LOL");
 
         //asynchronous call (non-blocking call) - Observer Design Pattern
-        myRef.addValueEventListener(new ValueEventListener()
+        creditCardRef.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                System.out.println("********* " + value);
+                //String value = dataSnapshot.getValue(String.class);
+                //System.out.println("********* " + dataSnapshot.toString());
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    //System.out.println("********* " + ds.toString());
+                    //de-serialize the card
+                    CreditCard tempCC = ds.getValue(CreditCard.class);
+                    Core.addCreditCard(tempCC);
+                }
+
+
 
             }
 
