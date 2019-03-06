@@ -29,7 +29,7 @@ public class AddLoyaltyProgramActivity extends AppCompatActivity
         int currPoints = Integer.parseInt(this.loyaltyPointsET.getText().toString());
 
         LoyaltyProgram lp = new LoyaltyProgram(programName, bankName, currPoints);
-        Core.addLoyaltyProgram(lp);
+        Core.addLoyaltyProgramToFirebase(lp);
         this.finish();
     }
 }

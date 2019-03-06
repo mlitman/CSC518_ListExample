@@ -1,10 +1,16 @@
 package com.example.awesomefat.csc518_listexample;
 
-public class LoyaltyProgram
+import com.google.firebase.database.DatabaseReference;
+
+import java.io.Serializable;
+
+public class LoyaltyProgram implements Serializable
 {
-    private String name;
-    private String bank;
-    private int point_balance;
+    public String name;
+    public String bank;
+    public int point_balance;
+    private String key;
+    private DatabaseReference ref;
 
     public LoyaltyProgram(String name, String bank)
     {
@@ -13,10 +19,27 @@ public class LoyaltyProgram
         this.point_balance = 0;
     }
 
+    public LoyaltyProgram()
+    {
+
+    }
+
     public LoyaltyProgram(String name, String bank, int point_balance)
     {
         this(name, bank);
         this.point_balance = point_balance;
+    }
+
+    public void save()
+    {
+        //save to the database the current state of this LoyaltyProgram
+        this.ref.setValue(this);
+    }
+
+    public void setKey(String key)
+    {
+        this.key = key;
+        this.ref = Core.loyaltyProgramRef.child(this.key);
     }
 
     public String toString()

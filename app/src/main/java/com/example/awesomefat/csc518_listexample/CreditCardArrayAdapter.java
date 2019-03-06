@@ -46,10 +46,10 @@ public class CreditCardArrayAdapter extends ArrayAdapter
         TextView ccBonusPoints = (TextView)listItem.findViewById(R.id.ccBonusPointsTV);
         CreditCard cc = this.creditCardList[position];
 
-        ccName.setText(cc.getName());
-        ccStartDate.setText(cc.getStart_date());
-        ccMinSpend.setText("" + cc.getMin_spend());
-        ccBonusPoints.setText("" + cc.getPoint_bonus());
+        ccName.setText(cc.name);
+        ccStartDate.setText(cc.start_date);
+        ccMinSpend.setText("" + cc.min_spend);
+        ccBonusPoints.setText("" + cc.point_bonus);
         //return the View after we have set all of the values
         return listItem;
     }

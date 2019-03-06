@@ -7,8 +7,18 @@ public class LinkedListOfCreditCards
 
     public LinkedListOfCreditCards()
     {
-        this.head = null;
+        this.init();
+    }
+
+    private void init()
+    {
         this.count = 0;
+        this.head = null;
+    }
+
+    public void removeAll()
+    {
+        this.init();
     }
 
     public int length()
