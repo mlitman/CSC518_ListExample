@@ -12,6 +12,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
 import static com.example.awesomefat.csc518_listexample.Core.database;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NetworkThread nt = new NetworkThread("MKE");
+        nt.start();
 
         this.myCurrentActivity = this;
 
@@ -140,6 +150,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void onAirportListButtonPressed(View v)
+    {
+        Intent i = new Intent(this, AirportListActivity.class);
+        this.startActivity(i);
     }
 
     public void onAddCreditCardButtonPressed(View v)

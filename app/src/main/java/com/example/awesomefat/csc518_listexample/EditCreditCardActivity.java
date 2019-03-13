@@ -48,8 +48,6 @@ public class EditCreditCardActivity extends AppCompatActivity
         dialog.setNeutralButton("Huh?", null);
         dialog.setNegativeButton("No", null);
         dialog.show();
-
-
     }
 
     public void onUpdateButtonPressed(View v)

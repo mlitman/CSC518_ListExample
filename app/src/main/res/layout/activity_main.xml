@@ -27,6 +27,13 @@
             android:onClick="onAddLoyaltyProgramButtonPressed"
             android:text="Add Loyalty Program" />
 
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onAirportListButtonPressed"
+            android:text="Airport List" />
+
         <ListView
             android:id="@+id/creditCardListView"
             android:layout_width="match_parent"
