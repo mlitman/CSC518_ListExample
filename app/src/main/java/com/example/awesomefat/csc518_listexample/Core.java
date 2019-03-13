@@ -16,6 +16,7 @@ public class Core
     public static DatabaseReference creditCardRef;
     public static DatabaseReference loyaltyProgramRef;
     public static CreditCard currentSelectedCard = null;
+    public static LoyaltyProgram currentSelectedLoyaltyProgram = null;
 
 
     public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)

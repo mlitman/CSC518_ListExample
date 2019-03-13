@@ -39,6 +39,11 @@ public class EditCreditCardActivity extends AppCompatActivity
         String creditCardStartDate = this.creditCardStartDateET.getText().toString();
         int creditCardMinSpend = Integer.parseInt(this.creditCardMinSpendET.getText().toString());
         int creditCardBonusPoints = Integer.parseInt(this.creditCardBonusPointET.getText().toString());
-
+        Core.currentSelectedCard.name = creditCardName;
+        Core.currentSelectedCard.start_date = creditCardStartDate;
+        Core.currentSelectedCard.min_spend = creditCardMinSpend;
+        Core.currentSelectedCard.point_bonus = creditCardBonusPoints;
+        Core.currentSelectedCard.save();
+        this.finish();
     }
 }

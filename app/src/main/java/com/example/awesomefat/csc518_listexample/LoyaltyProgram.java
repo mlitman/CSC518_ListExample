@@ -30,6 +30,19 @@ public class LoyaltyProgram implements Serializable
         this.point_balance = point_balance;
     }
 
+    public void delete()
+    {
+        this.ref.removeValue();
+    }
+
+    public void save(String name, String bank, int point_balance)
+    {
+        this.name = name;
+        this.bank = bank;
+        this.point_balance = point_balance;
+        this.save();
+    }
+
     public void save()
     {
         //save to the database the current state of this LoyaltyProgram

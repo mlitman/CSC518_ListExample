@@ -17,7 +17,7 @@ import static com.example.awesomefat.csc518_listexample.Core.database;
 public class MainActivity extends AppCompatActivity {
 
     private ListView creditCardLV, loyaltyProgramLV;
-    private MainActivity myContext;
+    private MainActivity myCurrentActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,11 +25,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.myContext = this;
+        this.myCurrentActivity = this;
 
         Core.database = FirebaseDatabase.getInstance();
         Core.creditCardRef = database.getReference("creditCards");
         Core.loyaltyProgramRef = database.getReference("loyaltyPrograms");
+
+        this.creditCardLV = (ListView)this.findViewById(R.id.creditCardListView);
+        this.loyaltyProgramLV = (ListView)this.findViewById(R.id.loyaltyProgramListView);
+
+        Core.ccCustomAdapter = new CreditCardArrayAdapterForLinkedLists(this,
+                R.layout.custom_credit_card_row, Core.theCreditCardsLL);
+        Core.lpCustomAdapter = new LoyaltyProgramArrayAdapterForLinkedLists(this,
+                R.layout.loyalty_program_custom_row, Core.theLoyaltyProgramsLL);
+
+        this.creditCardLV.setAdapter(Core.ccCustomAdapter);
+        this.loyaltyProgramLV.setAdapter(Core.lpCustomAdapter);
+
+        this.loyaltyProgramLV.setClickable(true);
+        this.loyaltyProgramLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
+    {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
+        {
+            LoyaltyProgram selectedLoyaltyProgram = Core.theLoyaltyProgramsLL.getAtIndex(position);
+            Intent i = new Intent(myCurrentActivity, EditLoyaltyProgramActivity.class);
+            Core.currentSelectedLoyaltyProgram = selectedLoyaltyProgram;
+            myCurrentActivity.startActivity(i);
+
+        }
+    });
+        this.creditCardLV.setClickable(true);
+        this.creditCardLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
+            {
+                CreditCard selectedCard = Core.theCreditCardsLL.getAtIndex(position);
+                Intent i = new Intent(myCurrentActivity, EditCreditCardActivity.class);
+                Core.currentSelectedCard = selectedCard;
+                myCurrentActivity.startActivity(i);
+
+
+            }
+        });
 
         Core.loyaltyProgramRef.addValueEventListener(new ValueEventListener()
         {
@@ -52,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     tempLP.setKey(ds.getKey());
                     Core.addLoyaltyProgramLocally(tempLP);
                 }
+                Core.lpCustomAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -85,9 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     tempCC.setKey(ds.getKey());
                     Core.addCreditCardLocally(tempCC);
                 }
-
-
-
+                Core.ccCustomAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -100,30 +138,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        this.creditCardLV = (ListView)this.findViewById(R.id.creditCardListView);
-        this.loyaltyProgramLV = (ListView)this.findViewById(R.id.loyaltyProgramListView);
 
-        Core.ccCustomAdapter = new CreditCardArrayAdapterForLinkedLists(this,
-                R.layout.custom_credit_card_row, Core.theCreditCardsLL);
-        Core.lpCustomAdapter = new LoyaltyProgramArrayAdapterForLinkedLists(this,
-                R.layout.loyalty_program_custom_row, Core.theLoyaltyProgramsLL);
-
-        this.creditCardLV.setAdapter(Core.ccCustomAdapter);
-        this.loyaltyProgramLV.setAdapter(Core.lpCustomAdapter);
-
-        this.creditCardLV.setClickable(true);
-        this.creditCardLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
-            {
-                CreditCard selectedCard = Core.theCreditCardsLL.getAtIndex(position);
-                Intent i = new Intent(myContext, EditCreditCardActivity.class);
-                Core.currentSelectedCard = selectedCard;
-                myContext.startActivity(i);
-
-            }
-        });
 
     }
 
