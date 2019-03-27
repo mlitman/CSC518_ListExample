@@ -18,7 +18,6 @@ public class Core
     public static CreditCard currentSelectedCard = null;
     public static LoyaltyProgram currentSelectedLoyaltyProgram = null;
 
-
     public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)
     {
         Core.loyaltyProgramRef.push().setValue(lp);

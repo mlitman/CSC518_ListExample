@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NetworkThread nt = new NetworkThread("MKE");
-        nt.start();
-
         this.myCurrentActivity = this;
 
         Core.database = FirebaseDatabase.getInstance();
