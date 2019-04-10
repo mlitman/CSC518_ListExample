@@ -11,22 +11,21 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
-public class AirportDetailActivity extends AppCompatActivity
+public class AirportMonthDetailActivity extends AppCompatActivity
 {
     private ListView destinationsLV;
-    private AirportDetailActivity myself;
+    private AirportMonthDetailActivity myself;
     private LinkedList<String> ll;
-    private AirportCodeCache acc;
     private ArrayAdapter<String> aa;
-    private String cityName;
-    private String airportCode;
+    private String cityName, airportCode, monthNum, monthLastDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_airport_month_detail);
+
         this.myself = this;
-        setContentView(R.layout.activity_airport_detail);
         final TextView airportTV = this.findViewById(R.id.airportTV);
         this.destinationsLV = this.findViewById(R.id.destinationsLV);
 
@@ -47,7 +46,7 @@ public class AirportDetailActivity extends AppCompatActivity
 
                 String[] parts = selectedAirport.split(" ");
 
-                Intent i = new Intent(myself, AirportDetailActivity.class);
+                Intent i = new Intent(myself, AirportMonthDetailActivity.class);
                 i.putExtra("airportCode", parts[parts.length-1].trim());
                 String cityName = "";
                 for(int j = 0; j < parts.length-1; j++)
@@ -55,20 +54,22 @@ public class AirportDetailActivity extends AppCompatActivity
                     cityName = cityName + parts[j] + " ";
                 }
                 i.putExtra("cityName", cityName);
-                Core.currentItinerary.push(cityName + " " + parts[parts.length-1].trim());
+                i.putExtra("monthNum", monthNum);
+                i.putExtra("monthLastDay", monthLastDay);
+                //Core.currentItinerary.push(cityName + " " + parts[parts.length-1].trim());
                 myself.startActivity(i);
             }
         });
 
-
-        cityName = this.getIntent().getStringExtra("cityName");
-        airportCode = this.getIntent().getStringExtra("airportCode");
+        this.monthLastDay = this.getIntent().getStringExtra("monthLastDay");
+        this.monthNum = this.getIntent().getStringExtra("monthNum");
+        this.cityName = this.getIntent().getStringExtra("cityName");
+        this.airportCode = this.getIntent().getStringExtra("airportCode");
         airportCode = airportCode.replaceAll("\"","");
         airportTV.setText(cityName + " - " + airportCode);
-
-        this.acc = new AirportCodeCache(airportCode);
-        acc.getData(aa, ll);
-
+        AirportDestinationThread adt = new AirportDestinationThread(this.airportCode, this.monthNum, this.monthLastDay, ll, aa);
+        adt.setPriority(Thread.MAX_PRIORITY);
+        adt.start();
         //Can't get airport stuff from cache
         //NetworkThread nt = new NetworkThread(airportCode, aa, ll);
         //nt.setPriority(Thread.MAX_PRIORITY);
@@ -76,32 +77,5 @@ public class AirportDetailActivity extends AppCompatActivity
 
         //strip the " from both ends of the airport code
 
-
-    }
-
-    public void onSelectMonthButtonPressed(View v)
-    {
-        Intent i = new Intent(this, MonthSelectActivity.class);
-        i.putExtra("airportCode", this.airportCode);
-        i.putExtra("cityName", this.cityName);
-        this.startActivity(i);
-    }
-
-    public void onDisplayItineraryButtonPressed(View v)
-    {
-        Intent i = new Intent(this, ItineraryActivity.class);
-        this.startActivity(i);
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        Core.currentItinerary.pop();
-        super.onBackPressed();
-    }
-
-    public void onReloadCacheButtonPressed(View v)
-    {
-        this.acc.clearCache(this.aa, this.ll);
     }
 }

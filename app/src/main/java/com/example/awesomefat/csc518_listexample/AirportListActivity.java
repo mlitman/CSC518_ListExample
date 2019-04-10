@@ -47,6 +47,10 @@ public class AirportListActivity extends AppCompatActivity
                 Airport selectedAirport = myself.theFilteredAirports.get(position);
                 i.putExtra("airportCode", selectedAirport.airportCode);
                 i.putExtra("cityName", selectedAirport.city);
+                i.putExtra("monthNum", "");
+                i.putExtra("monthLastDay", "");
+                i.putExtra("shouldCache", true);
+                i.putExtra("showMonthButton", true);
                 Core.currentItinerary.push(selectedAirport.city + " " + selectedAirport.airportCode);
                 myself.startActivity(i);
 
