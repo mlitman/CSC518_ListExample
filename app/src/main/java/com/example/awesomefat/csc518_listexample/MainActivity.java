@@ -32,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BinaryTree bt = new BinaryTree();
+        bt.addValue(5);
+        bt.addValue(2);
+        bt.addValue(1);
+        bt.addValue(7);
+        bt.addValue(8);
+        bt.addValue(3);
+        bt.visitInOrder();
+        bt.visitPostOrder();
+        bt.visitPreOrder();
+
         this.myCurrentActivity = this;
 
         Core.database = FirebaseDatabase.getInstance();
