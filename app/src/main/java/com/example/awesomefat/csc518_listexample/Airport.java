@@ -24,6 +24,34 @@ public class Airport implements Serializable
 
     }
 
+    private String removeQuotes(String s)
+    {
+        String result = "";
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(s.charAt(i) != '"')
+            {
+                result += s.charAt(i);
+            }
+        }
+        return result;
+    }
+
+    public boolean isLegalCode()
+    {
+        return this.airportCode.length() == 3;
+    }
+
+    public void sanitize()
+    {
+        this.name = this.removeQuotes(this.name);
+        this.country = this.removeQuotes(this.country);
+        this.airportCode = this.removeQuotes(this.airportCode);
+        this.city = this.removeQuotes(this.city);
+        this.region = this.removeQuotes(this.region);
+        this.display();
+    }
+
     public boolean filterApplies(String filterString)
     {
         filterString = filterString.toLowerCase();

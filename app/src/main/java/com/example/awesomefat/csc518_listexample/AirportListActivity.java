@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.awesomefat.csc518_listexample.AirportTree.AirportTree;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +27,7 @@ public class AirportListActivity extends AppCompatActivity
     private ArrayAdapter<String> aa;
     private EditText filterET;
     private AirportListActivity myself;
+    private AirportTree atree = new AirportTree();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,12 +64,33 @@ public class AirportListActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 Airport temp;
+                LinkedList<String> keys = new LinkedList<String>();
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     temp = ds.getValue(Airport.class);
+                    atree.add(temp);
+                    //temp.sanitize();
                     theAirports.add(temp);
+                    //keys.add(ds.getKey());
                     theAirportStrings.add(temp.toString());
                 }
+
+                /*
+                for(int i = 0; i < theAirports.size(); i++)
+                {
+                    Airport a = theAirports.get(i);
+                    String key = keys.get(i);
+                    if(a.isLegalCode())
+                    {
+                        Core.database.getReference("world_airports").child(key).setValue(a);
+                    }
+                    else
+                    {
+                        Core.database.getReference("world_airports").child(key).removeValue();
+                    }
+                }
+                */
+                //atree.visitInOrder();
                 aa.notifyDataSetChanged();
             }
 
@@ -77,6 +100,14 @@ public class AirportListActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    public void onMarakaClick(View v)
+    {
+        Intent i = new Intent(this, AirportTreeViewActivity.class);
+        //i.putExtra("aTree", this.atree.getRoot());
+        Core.currTree = this.atree.getRoot();
+        this.startActivity(i);
     }
 
     public void onFilterButtonPressed(View v)

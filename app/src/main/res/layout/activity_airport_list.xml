@@ -18,6 +18,13 @@
             android:onClick="onFilterButtonPressed"
             android:text="Filter" />
 
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onMarakaClick"
+            android:text="Maraka" />
+
         <EditText
             android:id="@+id/filterET"
             android:layout_width="match_parent"

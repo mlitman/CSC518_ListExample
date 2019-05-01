@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.awesomefat.csc518_listexample.yelp.YelpAPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        YelpAPI yelp = new YelpAPI();
+        yelp.start();
+
         BinaryTree bt = new BinaryTree();
         bt.addValue(5);
         bt.addValue(2);
@@ -42,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         bt.visitInOrder();
         bt.visitPostOrder();
         bt.visitPreOrder();
+
+        String obj1 = "MKE";
+        String obj2 = "ATL";
+        String obj3 = new String("atl");
+
+        System.out.println("*** LOL" + obj2.compareTo(obj3));
 
         this.myCurrentActivity = this;
 
