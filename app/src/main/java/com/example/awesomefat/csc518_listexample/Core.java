@@ -3,6 +3,7 @@ package com.example.awesomefat.csc518_listexample;
 import android.widget.ArrayAdapter;
 
 import com.example.awesomefat.csc518_listexample.AirportTree.ATree;
+import com.example.awesomefat.csc518_listexample.yelp.Restaurant;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,7 +21,7 @@ public class Core
     public static LoyaltyProgram currentSelectedLoyaltyProgram = null;
     public static ItineraryStack currentItinerary = new ItineraryStack();
     public static ATree currTree = null;
-
+    public static Restaurant currSelectedRestaurant = null;
     public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)
     {
         Core.loyaltyProgramRef.push().setValue(lp);
